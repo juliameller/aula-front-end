@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>exercicio 01 - chat html - front-end</title>
+    <link rel="stylesheet" href="chat.css" />
+  </head>
+  <body>
+    <div id="chat-screen">
+      <header>
+        <h2>Atendimento on-line</h2>
+      </header>
+      <div class="messages-list">
+        <div class="message-item">
+          <div class="msg-user"><strong>Atendente diz:</strong></div>
+          <div class="msg-chat">Olá, tudo bem?</div>
+        </div>
+        <div class="message-item">
+          <div class="msg-user"><strong>Atendente diz:</strong></div>
+          <div class="msg-chat">Como posso ajudar?</div>
+        </div>
+        <div class="message-item message-user">
+          <div class="msg-user"><strong>Você diz:</strong></div>
+          <div class="msg-chat">Bla bla Bla</div>
+        </div>
+        <div class="message-item">
+          <div class="msg-user"><strong>Atendente diz:</strong></div>
+          <div class="msg-chat">Blabla blabla blabla?</div>
+        </div>
+        <div class="message-item message-user">
+          <div class="msg-user"><strong>Você diz:</strong></div>
+          <div class="msg-chat">Bla blabla Ba</div>
+        </div>
+        <div class="message-item">
+          <div class="msg-user"><strong>Atendente diz:</strong></div>
+          <div class="msg-chat">Blabla?</div>
+        </div>
+       </div>
+       <form id="form-chat-send" action="index.html" method="post">
+         <input type="text" id="message" name="message" placeholder="Digite sua mensagem..." />
+         <button type="submit">ENVIAR</button>
+       </form>
+    </div>
+    <script>
+        function sendMessage(event) {
+  event.preventDefault();
+  const newMessage = document.querySelector("#message");
+  if (newMessage.value !== "") {
+    const messageItem = document.createElement("div");
+    messageItem.classList.add("message-item");
+    messageItem.classList.add("message-user");
+
+    const msgUser = document.createElement("div");
+    msgUser.classList.add("msg-user");
+    msgUser.innerHTML = "<strong>Você diz:</strong>";
+                
+    const msgChat = document.createElement("div");
+    msgChat.classList.add("msg-chat");
+    msgChat.textContent = newMessage.value;
+            
+    messageItem.appendChild(msgUser);
+    messageItem.appendChild(msgChat);
+
+    const lista = document.querySelector(".messages-list");
+    lista.appendChild(messageItem);
+                
+    formChatSend.reset();
+            
+    newMessage.focus();
+  }
+}
+const formChatSend = document.querySelector("#form-chat-send");
+  formChatSend.addEventListener("submit", sendMessage);
+      </script>
+  </body>
+</html>
